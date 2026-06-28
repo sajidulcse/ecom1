@@ -40,13 +40,30 @@ if (empty($receivedToken) || $receivedToken !== $secureToken) {
 }
 
 // Validate Uploaded File
-if (!isset($_FILES['package']) || $_FILES['package']['error'] !== UPLOAD_ERR_OK) {
+$zipFile = null;
+$isTempFile = false;
+
+if (isset($_FILES['package']) && $_FILES['package']['error'] === UPLOAD_ERR_OK) {
+    $zipFile = $_FILES['package']['tmp_name'];
+} else {
+    // Fallback: Check if file was sent as raw binary POST payload
+    $rawData = file_get_contents('php://input');
+    if (!empty($rawData)) {
+        $tempFile = tempnam(sys_get_temp_dir(), 'dep');
+        if ($tempFile) {
+            file_put_contents($tempFile, $rawData);
+            $zipFile = $tempFile;
+            $isTempFile = true;
+        }
+    }
+}
+
+if (!$zipFile) {
     http_response_code(400);
     echo json_encode(['status' => 'error', 'message' => 'No deployment package uploaded or upload error occurred.']);
     exit;
 }
 
-$zipFile = $_FILES['package']['tmp_name'];
 $targetDir = realpath(__DIR__ . '/../');
 
 if (!class_exists('ZipArchive')) {
@@ -56,6 +73,7 @@ if (!class_exists('ZipArchive')) {
 }
 
 $zip = new ZipArchive();
+$success = false;
 if ($zip->open($zipFile) === TRUE) {
     // Extract everything directly to Laravel root (parent of public/)
     $zip->extractTo($targetDir);
@@ -67,6 +85,15 @@ if ($zip->open($zipFile) === TRUE) {
     @unlink($targetDir . '/bootstrap/cache/packages.php');
     @unlink($targetDir . '/bootstrap/cache/services.php');
 
+    $success = true;
+}
+
+// Clean up temporary file if we created one
+if ($isTempFile && file_exists($zipFile)) {
+    @unlink($zipFile);
+}
+
+if ($success) {
     echo json_encode(['status' => 'success', 'message' => 'Deployment package extracted successfully.']);
 } else {
     http_response_code(500);

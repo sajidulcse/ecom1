@@ -29,9 +29,10 @@ jobs:
       - name: Trigger Webhook and Upload Package
         run: |
           RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
-            -F "token=${{ secrets.DEPLOY_SECURE_TOKEN }}" \
-            -F "package=@deploy.zip" \
-            https://ecom1.premiumtouchbd.com/deploy.php)
+            -H "Content-Type: application/octet-stream" \
+            -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+            --data-binary @deploy.zip \
+            "https://ecom1.premiumtouchbd.com/deploy.php?token=${{ secrets.DEPLOY_SECURE_TOKEN }}")
           
           HTTP_CODE=$(echo "$RESPONSE" | tail -n 1)
           BODY=$(echo "$RESPONSE" | head -n -1)
