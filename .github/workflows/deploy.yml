@@ -1,4 +1,4 @@
-name: Deploy Laravel via FTP
+name: Deploy Laravel via Webhook
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  web-deploy:
-    name: Deploy to Web Server
+  build-and-deploy:
+    name: Build Dependencies and Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Get latest code
@@ -22,20 +22,24 @@ jobs:
       - name: Install Composer Dependencies
         run: composer install --no-dev --optimize-autoloader --prefer-dist
 
-      - name: Sync files via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          protocol: ftp
-          server-dir: /home/premium2/domains/ecom1.premiumtouchbd.com/public_html/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            .env
-            .env.example
-            tests/
-            phpunit.xml
+      - name: Create Deployment Package (ZIP)
+        run: |
+          zip -r deploy.zip . -x "*.git*" -x ".github*" -x "node_modules*" -x ".env*" -x "tests*" -x "phpunit.xml"
+
+      - name: Trigger Webhook and Upload Package
+        run: |
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+            -F "token=${{ secrets.DEPLOY_SECURE_TOKEN }}" \
+            -F "package=@deploy.zip" \
+            https://ecom1.premiumtouchbd.com/deploy.php)
+          
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n 1)
+          BODY=$(echo "$RESPONSE" | head -n -1)
+          
+          echo "Response Body: $BODY"
+          echo "HTTP Code: $HTTP_CODE"
+          
+          if [ "$HTTP_CODE" -ne 200 ]; then
+            echo "Deployment failed with HTTP code $HTTP_CODE"
+            exit 1
+          fi
