@@ -7,7 +7,7 @@ html, body {
     max-width: 100%;
     overflow-x: hidden;
     position: relative;
-    overscroll-behavior: none;
+    overscroll-behavior-y: contain;
 }
 
 body {
@@ -3544,7 +3544,6 @@ form.sort-form .form-select:focus {
 
 #content {
     width: 100%;
-    overflow-x: hidden;
     /* padding-top is set dynamically by JS to match header height */
 }
 
