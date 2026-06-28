@@ -30,9 +30,9 @@
         <link rel="stylesheet" href="{{asset('public/backEnd/')}}/assets/css/toastr.min.css" />
 
         <link rel="stylesheet" href="{{asset('public/frontEnd/css/wsit-menu.css')}}" />
-        <link rel="stylesheet" href="{{asset('public/frontEnd/css/style.css')}}" />
-        <link rel="stylesheet" href="{{asset('public/frontEnd/css/responsive.css')}}" />
-        <link rel="stylesheet" href="{{asset('public/frontEnd/css/main.css')}}" />
+        <link rel="stylesheet" href="{{asset('public/frontEnd/css/style.css')}}?v={{ filemtime(public_path('frontEnd/css/style.css')) }}" />
+        <link rel="stylesheet" href="{{asset('public/frontEnd/css/responsive.css')}}?v={{ filemtime(public_path('frontEnd/css/responsive.css')) }}" />
+        <link rel="stylesheet" href="{{asset('public/frontEnd/css/main.css')}}?v={{ filemtime(public_path('frontEnd/css/main.css')) }}" />
 
         <meta name="facebook-domain-verification" content="{{$generalsetting->facebook_verification}}" />
         <meta name="google-site-verification" content="{{$generalsetting->google_verification}}" />

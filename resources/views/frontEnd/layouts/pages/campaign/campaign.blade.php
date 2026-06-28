@@ -16,8 +16,8 @@
         <!-- owl carousel -->
         <link rel="stylesheet" href="{{ asset('public/frontEnd/campaign/css') }}/select2.min.css" />
         <!-- common css -->
-        <link rel="stylesheet" href="{{ asset('public/frontEnd/campaign/css') }}/style.css" />
-        <link rel="stylesheet" href="{{ asset('public/frontEnd/campaign/css') }}/responsive.css" />
+        <link rel="stylesheet" href="{{ asset('public/frontEnd/campaign/css/style.css') }}?v={{ filemtime(public_path('frontEnd/campaign/css/style.css')) }}" />
+        <link rel="stylesheet" href="{{ asset('public/frontEnd/campaign/css/responsive.css') }}?v={{ filemtime(public_path('frontEnd/campaign/css/responsive.css')) }}" />
         @foreach($pixels as $pixel)
         <!-- Facebook Pixel Code -->
         <script>
