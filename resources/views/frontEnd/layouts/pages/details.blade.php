@@ -2,7 +2,7 @@
     @section('title', $details->name) 
     @push('seo')
             <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta name="app-url" content="{{ route('product', $details->slug) }}" />
     <meta name="robots" content="index, follow" />
     <meta name="description" content="{{ $details->meta_description }}" />
