@@ -30,9 +30,9 @@
         <link rel="stylesheet" href="<?php echo e(asset('public/backEnd/')); ?>/assets/css/toastr.min.css" />
 
         <link rel="stylesheet" href="<?php echo e(asset('public/frontEnd/css/wsit-menu.css')); ?>" />
-        <link rel="stylesheet" href="<?php echo e(asset('public/frontEnd/css/style.css')); ?>" />
-        <link rel="stylesheet" href="<?php echo e(asset('public/frontEnd/css/responsive.css')); ?>" />
-        <link rel="stylesheet" href="<?php echo e(asset('public/frontEnd/css/main.css')); ?>" />
+        <link rel="stylesheet" href="<?php echo e(asset('public/frontEnd/css/style.css')); ?>?v=<?php echo e(filemtime(public_path('frontEnd/css/style.css'))); ?>" />
+        <link rel="stylesheet" href="<?php echo e(asset('public/frontEnd/css/responsive.css')); ?>?v=<?php echo e(filemtime(public_path('frontEnd/css/responsive.css'))); ?>" />
+        <link rel="stylesheet" href="<?php echo e(asset('public/frontEnd/css/main.css')); ?>?v=<?php echo e(filemtime(public_path('frontEnd/css/main.css'))); ?>" />
 
         <meta name="facebook-domain-verification" content="<?php echo e($generalsetting->facebook_verification); ?>" />
         <meta name="google-site-verification" content="<?php echo e($generalsetting->google_verification); ?>" />
