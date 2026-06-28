@@ -28,6 +28,8 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftp
           server-dir: /home/premium2/domains/ecom1.premiumtouchbd.com/public_html/
           exclude: |
             **/.git*
