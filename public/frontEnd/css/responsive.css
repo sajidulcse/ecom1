@@ -52,10 +52,12 @@
     .filter_sort {
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: space-between;
         gap: 10px;
         padding: 0 6px;
         margin-top: 12px;
+        width: 100%;
+        box-sizing: border-box;
     }
     .filter_sort .page-sort {
         width: 160px;
@@ -91,6 +93,9 @@
         visibility: visible;
         opacity: 1;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        overscroll-behavior: contain;
     }
     .filter_sidebar.active::-webkit-scrollbar-track
     {
@@ -213,6 +218,9 @@
     height: 100vh;
     overflow-y: auto;
     transition: all 0.3s ease;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
 }
 .category-breadcrumb {
     justify-content: center;
@@ -234,6 +242,10 @@
     height: 100vh;
     transition: all 0.3s ease;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+    padding-bottom: 80px;
 }
 .mobile-menu::-webkit-scrollbar-track
 {
@@ -629,14 +641,12 @@ header .toggle {
 	}
 
 	.slider-item {
-	    height: 150px;
+	    height: auto;
 	    margin-top: 0px;
-	    overflow: hidden;
 	}
 	.slider-item img {
-	    height: 100%;
-	    object-fit: cover;
-	    transform: scale(1.05);
+	    height: auto;
+	    object-fit: contain;
 	}
 	.footer-about p {
 	    text-align: center;

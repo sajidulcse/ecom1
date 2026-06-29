@@ -1048,15 +1048,13 @@ section.slider-section .container {
 
 .slider-item {
     width: 100%;
-    height: 400px;
-    overflow: hidden; /* Hide overflow from zoomed image */
+    height: auto;
 }
 
 .slider-item img {
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensure image covers the slider area */
-    transform: scale(1.05); /* Slightly zoom the image */
+    height: auto;
+    object-fit: contain; /* Ensure image is fully shown */
     transition: transform 0.5s ease;
 }
 
@@ -1227,7 +1225,7 @@ section.slider-section .container {
 
 .footer-about a img {
     height: auto;
-    width: 110px;
+    width: 180px;
     object-fit: contain;
 }
 

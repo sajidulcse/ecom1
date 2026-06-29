@@ -640,7 +640,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="copyright">
-                                <p>Copyright © {{ date('Y') }} {{$generalsetting->name}}. All rights reserved | <span style="color: white;">Website Designed by: <a href="https://nextstagesoftware.com/"><span style="color: white;">NextStageSoftware</span></a></span></p>
+                                <p>Copyright © {{ date('Y') }} {{$generalsetting->name}}. All rights reserved | <span style="color: white;">Website Designed by: <a href="https://www.facebook.com/sajid.rana.7399"><span style="color: white;">Sajid Rana</span></a></span></p>
                             </div>
                         </div>
                     </div>
@@ -1105,22 +1105,26 @@ $(document).on("click", ".cart_remove", function (e) {
             $(".toggle").on("click", function () {
                 $("#page-overlay").show();
                 $(".mobile-menu").addClass("active");
+                $("body").css("overflow-y", "hidden");
             });
 
             $("#page-overlay").on("click", function () {
                 $("#page-overlay").hide();
                 $(".mobile-menu").removeClass("active");
                 $(".feature-products").removeClass("active");
+                $("body").css("overflow-y", "auto");
             });
 
             $(".mobile-menu-close").on("click", function () {
                 $("#page-overlay").hide();
                 $(".mobile-menu").removeClass("active");
+                $("body").css("overflow-y", "auto");
             });
 
             $(".mobile-filter-toggle").on("click", function () {
                 $("#page-overlay").show();
                 $(".feature-products").addClass("active");
+                $("body").css("overflow-y", "hidden");
             });
         </script>
         <script>

@@ -48,8 +48,8 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="filter_sort">
-                                <div class="mobile-filter-toggle">
-                                    <i class="fa fa-list-ul"></i><span>filter</span>
+                                <div class="filter_btn">
+                                    <i class="fa fa-list-ul"></i>
                                 </div>
                                 <div class="page-sort">
                                     <form action="" class="sort-form">

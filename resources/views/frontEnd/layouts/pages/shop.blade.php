@@ -24,8 +24,8 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="filter_sort">
-                                <div class="mobile-filter-toggle">
-                                    <i class="fa fa-list-ul"></i><span>filter</span>
+                                <div class="filter_btn">
+                                    <i class="fa fa-list-ul"></i>
                                 </div>
                                 <div class="page-sort">
                                     <form action="" class="sort-form">
@@ -53,7 +53,46 @@
             <div class="col-sm-12">
                  <div class="offer_timer" id="simple_timer"></div>
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-3 filter_sidebar">
+                <div class="filter_close"><i class="fa fa-long-arrow-left"></i> Filter</div>
+                <form action="" class="attribute-submit">
+                    <div class="sidebar_item wraper__item">
+                        <div class="accordion" id="price_sidebar">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapsePrice" aria-expanded="true" aria-controls="collapseOne">
+                                        Price
+                                    </button>
+                                </h2>
+                                <div id="collapsePrice" class="accordion-collapse collapse show"
+                                    data-bs-parent="#price_sidebar">
+                                    <div class="accordion-body cust_according_body">
+                                        <div class="category-filter-box category__wraper" id="categoryFilterBox">
+                                            <div class="category-filter-item">
+                                                <div class="filter-body">
+                                                    <div class="slider-box">
+                                                        <div class="filter-price-inputs">
+                                                            <p class="min-price">৳<input type="text"
+                                                                    name="min_price" id="min_price" readonly="" />
+                                                            </p>
+                                                            <p class="max-price">৳<input type="text"
+                                                                    name="max_price" id="max_price" readonly="" />
+                                                            </p>
+                                                        </div>
+                                                        <div id="price-range" class="slider form-attribute"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-9">
                 <div class="category-product main_product_inner">
                     @foreach($products as $key=>$value)
                     <div class="product_item wist_item">
@@ -140,22 +179,72 @@
 
 @endsection
 @push('script')
-<script>
-    $(".sort").change(function(){
-       $('#loading').show();
-       $(".sort-form").submit();
-    })
-</script>
-<script>
-    $("#simple_timer").syotimer({
-        date: new Date(2015, 0, 1),
-        layout: "hms",
-        doubleNumbers: false,
-        effectType: "opacity",
+    <script src="{{asset('public/cdn/js/jquery-2.1.3.min.js')}}"></script>
+    <script src="{{asset('public/cdn/js/jquery-ui-1.11.2.min.js')}}"></script>
+    <script>
+        $("#price-range").click(function() {
+            $(".price-submit").submit();
+        })
+        $(".form-attribute").on('change click',function(){
+            $(".attribute-submit").submit();
+        })
+        $(".sort").change(function(){
+           $('#loading').show();
+           $(".sort-form").submit();
+        })
+    </script>
+    <script>
+        $(function() {
+            $("#price-range").slider({
+                step: 5,
+                range: true,
+                min: {{ $min_price }},
+                max: {{ $max_price }},
+                values: [
+                    {{ request()->get('min_price') ? request()->get('min_price') : $min_price }},
+                    {{ request()->get('max_price') ? request()->get('max_price') : $max_price }}
+                ],
+                slide: function(event, ui) {
+                    $("#min_price").val(ui.values[0]);
+                    $("#max_price").val(ui.values[1]);
+                }
+            });
+            $("#min_price").val({{ request()->get('min_price') ? request()->get('min_price') : $min_price }});
+            $("#max_price").val({{ request()->get('max_price') ? request()->get('max_price') : $max_price }});
+            $("#priceRange").val($("#price-range").slider("values", 0) + " - " + $("#price-range").slider("values",
+                1));
 
-        periodUnit: "d",
-        periodic: true,
-        periodInterval: 1,
-    });
-</script>
+            $("#mobile-price-range").slider({
+                step: 5,
+                range: true,
+                min: {{ $min_price }},
+                max: {{ $max_price }},
+                values: [
+                    {{ request()->get('min_price') ? request()->get('min_price') : $min_price }},
+                    {{ request()->get('max_price') ? request()->get('max_price') : $max_price }}
+                ],
+                slide: function(event, ui) {
+                    $("#min_price").val(ui.values[0]);
+                    $("#max_price").val(ui.values[1]);
+                }
+            });
+            $("#min_price").val({{ request()->get('min_price') ? request()->get('min_price') : $min_price }});
+            $("#max_price").val({{ request()->get('max_price') ? request()->get('max_price') : $max_price }});
+            $("#priceRange").val($("#price-range").slider("values", 0) + " - " + $("#price-range").slider("values",
+                1));
+
+        });
+    </script>
+    <script>
+        $("#simple_timer").syotimer({
+            date: new Date(2015, 0, 1),
+            layout: "hms",
+            doubleNumbers: false,
+            effectType: "opacity",
+
+            periodUnit: "d",
+            periodic: true,
+            periodInterval: 1,
+        });
+    </script>
 @endpush

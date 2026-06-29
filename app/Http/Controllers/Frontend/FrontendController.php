@@ -150,7 +150,7 @@ class FrontendController extends Controller
             $products = $products->where('new_price','<=',$request->max_price);
         }
         $products = $products->paginate(36);
-        return view('frontEnd.layouts.pages.hotdeals', compact('products'));
+        return view('frontEnd.layouts.pages.hotdeals', compact('products', 'min_price', 'max_price'));
     }
     public function shop(Request $request)
     {
@@ -180,7 +180,7 @@ class FrontendController extends Controller
             $products = $products->where('new_price','<=',$request->max_price);
         }
         $products = $products->paginate(36);
-        return view('frontEnd.layouts.pages.shop', compact('products'));
+        return view('frontEnd.layouts.pages.shop', compact('products', 'min_price', 'max_price'));
     }
     public function flashsales(Request $request)
     {
@@ -211,7 +211,7 @@ class FrontendController extends Controller
             $products = $products->where('new_price','<=',$request->max_price);
         }
         $products = $products->paginate(36);
-        return view('frontEnd.layouts.pages.flashsales', compact('products'));
+        return view('frontEnd.layouts.pages.flashsales', compact('products', 'min_price', 'max_price'));
     }
 
     public function category($slug, Request $request)
