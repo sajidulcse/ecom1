@@ -407,11 +407,6 @@
         <header id="navbar_top">
             <div class="top_header" style="background-color:#3c7d17">
                     <div class="container d-flex align-items-center">
-                        <!-- Hotline button on the left side -->
-                        <a href="tel:{{ $contact->hotline }}" class="text-center bg-light px-2 d-none d-sm-block fw-bold fs-4" style="color:#13027D;min-width:270px;">
-                            <i class="fa-solid fa-headset"></i> {{ $contact->hotline }}
-                        </a>
-                        
                         <!-- Marquee headline -->
                         <div class="d-flex align-items-center flex-grow-1">
                             <marquee direction="left" scrollamount="5" class="text-light fs-6" >
