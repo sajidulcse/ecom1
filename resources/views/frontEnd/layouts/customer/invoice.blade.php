@@ -110,7 +110,7 @@
                             </tbody>
                         </table>
                         <div class="terms-condition" style="overflow: hidden; width: 100%; text-align: center; padding: 20px 0; border-top: 1px solid #ddd;">
-                            <h5 style="font-style: italic;"><a href="{{route('page',['slug'=>'terms-condition'])}}">Terms & Conditions</a></h5>
+                            <h5 style="font-style: italic;"><a href="{{route('page',['slug'=>'terms-&-conditions'])}}">Terms & Conditions</a></h5>
                             <p style="text-align: center; font-style: italic; font-size: 15px; margin-top: 10px;">* This is a computer generated invoice, does not require any signature.</p>
                         </div>
                     </div>
