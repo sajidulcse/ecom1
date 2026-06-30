@@ -59,8 +59,9 @@
                     <div class="main_slider owl-carousel">
                         @foreach ($sliders as $key => $value)
                             <div class="slider-item">
-                                <img src="{{ asset($value->image) }}" alt="" />
-                                
+                                <a href="{{ $value->link }}">
+                                    <img src="{{ asset($value->image) }}" alt="" />
+                                </a>
                             </div>
                             <!-- slider item -->
                         @endforeach
@@ -144,7 +145,7 @@
     $isFlashSaleActive = $flashSaleEndDate && \Carbon\Carbon::parse($flashSaleEndDate)->isFuture(); 
 @endphp
 <!--//Flash sales-->
-@if($isFlashSaleActive)
+@if($isFlashSaleActive && !$flas_sales->isEmpty())
 <section class="homeproduct">
     <div class="container">
         <div class="row">
@@ -245,7 +246,7 @@
 </section>
 @endif
 <!--//hot deals-->
-@if($isHotDealActive)
+@if($isHotDealActive && !$hotdeal_top->isEmpty())
 <section class="homeproduct">
     <div class="container">
         <div class="row">
@@ -346,7 +347,7 @@
 
 
 
-@if($generalsetting->show_all_products)
+@if($generalsetting->show_all_products && !$all_products->isEmpty())
 <section class="homeproduct">
     <div class="container">
         <div class="row">
@@ -432,7 +433,9 @@
                     @endforeach
                 </div>
             </div>
-
+            <div class="col-sm-12">
+               <a href="{{ route('shop') }}" class="view_more_btn" style="float:left">View More</a> 
+            </div>
         </div>
     </div>
 </section>
@@ -459,6 +462,7 @@
 
 @if($generalsetting->show_category_wise_products)
     @foreach ($homeproducts as $homecat)
+        @if(!$homecat->products->isEmpty())
         <section class="homeproduct">
             <div class="container">
                 <div class="row">
@@ -549,6 +553,7 @@
                 </div>
             </div>
         </section>
+        @endif
     @endforeach
 @endif
 @if($campaognads)

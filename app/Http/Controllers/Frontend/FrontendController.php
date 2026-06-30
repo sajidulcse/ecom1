@@ -111,7 +111,7 @@ class FrontendController extends Controller
             ->inRandomOrder()
             ->select('id', 'name', 'slug', 'new_price', 'old_price','sold','stock')
             ->with('prosizes', 'procolors')
-            ->limit(30)
+            ->limit(12)
             ->get();
         }else{
             $all_products = null;
