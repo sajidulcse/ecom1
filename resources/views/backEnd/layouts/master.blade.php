@@ -559,7 +559,7 @@
         <footer class="footer">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-12 text-end"><a href="https://nextstagesoftware.com/" target="_blank">Website Designed by: NextStageSoftware</a></div>
+              <div class="col-md-12 text-end"><a href="https://www.facebook.com/sajid.rana.7399" target="_blank">Website Designed by: Sajid Rana</a></div>
             </div>
           </div>
         </footer>
