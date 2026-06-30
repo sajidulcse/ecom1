@@ -28,7 +28,7 @@ use App\Models\Contact;
 use App\Models\ContactMessage;
 use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Cart;
+use Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Mail\ContactMail;
@@ -483,20 +483,28 @@ class FrontendController extends Controller
     public function campaign($slug)
     {
         $campaign_data = Campaign::where('slug', $slug)->with('images')->first();
+        if (!$campaign_data) {
+            abort(404);
+        }
        
-        $products = Product::whereIn('id', function($query) use ($campaign_data) {
-            $query->select('product_id')
-                  ->from('campaign_product')
-                  ->where('campaign_id', $campaign_data->id);
-        })->orWhere('id', $campaign_data->product_id)
-          ->where('status', 1)
+        $products = Product::where(function($query) use ($campaign_data) {
+            $query->whereIn('id', function($subquery) use ($campaign_data) {
+                $subquery->select('product_id')
+                      ->from('campaign_product')
+                      ->where('campaign_id', $campaign_data->id);
+            })->orWhere('id', $campaign_data->product_id);
+        })->where('status', 1)
           ->with('image')
           ->get();
           
+        $product = $products->first();
+        if (!$product) {
+            Toastr::error('This campaign does not have any active products.', 'Error');
+            return redirect()->route('home');
+        }
         
         Cart::instance('shopping')->destroy();
         $cart_count = Cart::instance('shopping')->count();
-        $product = $products->first();
         if ($cart_count == 0) {
             Cart::instance('shopping')->add([
                 'id' => $product->id,
@@ -505,7 +513,7 @@ class FrontendController extends Controller
                 'price' => $product->new_price,
                 'options' => [
                     'slug' => $product->slug,
-                    'image' => $product->image->image,
+                    'image' => $product->image ? $product->image->image : '',
                     'old_price' => $product->old_price,
                     'purchase_price' => $product->purchase_price,
                 ],

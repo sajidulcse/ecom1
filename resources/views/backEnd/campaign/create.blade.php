@@ -65,6 +65,139 @@
                         </div>
                     </div>
                     <!-- col-end -->
+
+                    <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="deadline" class="form-label">Deadline</label>
+                            <input type="datetime-local" class="form-control @error('deadline') is-invalid @enderror" name="deadline" value="{{ old('deadline') }}" id="deadline">
+                            @error('deadline')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="top_title_1" class="form-label">Top Title 1</label>
+                            <input type="text" class="form-control @error('top_title_1') is-invalid @enderror" name="top_title_1" value="{{ old('top_title_1') }}" id="top_title_1">
+                            @error('top_title_1')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="top_title_2" class="form-label">Top Title 2</label>
+                            <input type="text" class="form-control @error('top_title_2') is-invalid @enderror" name="top_title_2" value="{{ old('top_title_2') }}" id="top_title_2">
+                            @error('top_title_2')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="heading_1" class="form-label">Heading 1</label>
+                            <input type="text" class="form-control @error('heading_1') is-invalid @enderror" name="heading_1" value="{{ old('heading_1') }}" id="heading_1">
+                            @error('heading_1')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="feature_1" class="form-label">Feature 1</label>
+                            <input type="text" class="form-control @error('feature_1') is-invalid @enderror" name="feature_1" value="{{ old('feature_1') }}" id="feature_1">
+                            @error('feature_1')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="feature_2" class="form-label">Feature 2</label>
+                            <input type="text" class="form-control @error('feature_2') is-invalid @enderror" name="feature_2" value="{{ old('feature_2') }}" id="feature_2">
+                            @error('feature_2')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="heading_2" class="form-label">Heading 2</label>
+                            <input type="text" class="form-control @error('heading_2') is-invalid @enderror" name="heading_2" value="{{ old('heading_2') }}" id="heading_2">
+                            @error('heading_2')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="heading_3" class="form-label">Heading 3</label>
+                            <input type="text" class="form-control @error('heading_3') is-invalid @enderror" name="heading_3" value="{{ old('heading_3') }}" id="heading_3">
+                            @error('heading_3')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="heading_4" class="form-label">Heading 4</label>
+                            <input type="text" class="form-control @error('heading_4') is-invalid @enderror" name="heading_4" value="{{ old('heading_4') }}" id="heading_4">
+                            @error('heading_4')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="note" class="form-label">Note</label>
+                            <input type="text" class="form-control @error('note') is-invalid @enderror" name="note" value="{{ old('note') }}" id="note">
+                            @error('note')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="billing_details" class="form-label">Billing Details</label>
+                            <input type="text" class="form-control @error('billing_details') is-invalid @enderror" name="billing_details" value="{{ old('billing_details') }}" id="billing_details">
+                            @error('billing_details')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <!-- col-end -->
                     <div class="col-sm-12">
                         <div class="form-group mb-3">
                             <label for="video" class="form-label">Youtube Video ID</label>
