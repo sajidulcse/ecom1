@@ -736,6 +736,7 @@ header .toggle {
 	}
 	.auth-section, .checkout-shipping {
       margin-top: 5px;
+      padding: 0 15px;
     }
 	.payment-form .gap-3 {
 	    gap: 0 !important;
