@@ -335,6 +335,23 @@
                 background-color: #cc0000;  /* Darker YouTube red on hover */
             }
 
+            /* Smart Sticky Header Styles */
+            header#navbar_top {
+                position: fixed !important;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 9999;
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+                box-shadow: none;
+            }
+            header#navbar_top.sticky-active {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            }
+            header#navbar_top.sticky-hidden {
+                transform: translateY(-100%);
+            }
+
         </style>
         {!! $generalsetting->header_code !!}
     </head>
@@ -1244,6 +1261,60 @@ $(document).on("click", ".cart_remove", function (e) {
                 $(window).on('load', function(){
                     adjustContentPadding();
                 });
+            })();
+        </script>
+
+        {{-- Smart Sticky Header Script --}}
+        <script>
+            (function () {
+                var header = document.getElementById("navbar_top");
+                if (!header) return;
+
+                var lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+                var ticking = false;
+                var threshold = 8; // Minimum scroll delta to trigger change
+
+                function updateHeader() {
+                    var currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+                    // Bound scroll position
+                    if (currentScrollY < 0) {
+                        currentScrollY = 0;
+                    }
+
+                    // 1. Subtle shadow when scrolled past a tiny threshold
+                    if (currentScrollY > 50) {
+                        header.classList.add("sticky-active");
+                    } else {
+                        header.classList.remove("sticky-active");
+                    }
+
+                    // 2. Scroll direction detection with threshold
+                    var diff = Math.abs(currentScrollY - lastScrollY);
+
+                    if (currentScrollY <= 0) {
+                        // At the very top, always show
+                        header.classList.remove("sticky-hidden");
+                    } else if (diff >= threshold) {
+                        if (currentScrollY > lastScrollY && currentScrollY > header.offsetHeight) {
+                            // Scrolling down and scrolled past header height -> hide
+                            header.classList.add("sticky-hidden");
+                        } else if (currentScrollY < lastScrollY) {
+                            // Scrolling up -> show
+                            header.classList.remove("sticky-hidden");
+                        }
+                    }
+
+                    lastScrollY = currentScrollY;
+                    ticking = false;
+                }
+
+                window.addEventListener("scroll", function () {
+                    if (!ticking) {
+                        window.requestAnimationFrame(updateHeader);
+                        ticking = true;
+                    }
+                }, { passive: true });
             })();
         </script>
         <script>
