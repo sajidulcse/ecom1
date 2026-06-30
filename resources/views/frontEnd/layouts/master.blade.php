@@ -652,7 +652,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="copyright">
-                                <p>Copyright © {{ date('Y') }} {{$generalsetting->name}}. All rights reserved | <span style="color: white;">Website Designed by: <a href="https://www.facebook.com/sajid.rana.7399"><span style="color: white;">Sajid Rana</span></a></span></p>
+                                <p>Copyright © {{ date('Y') }} {{$generalsetting->name}}. All rights reserved | <span style="color: white;">Website Designed by: <a href="https://www.facebook.com/sajid.rana.7399" target="_blank"><span style="color: white;">Sajid Rana</span></a></span></p>
                             </div>
                         </div>
                     </div>
