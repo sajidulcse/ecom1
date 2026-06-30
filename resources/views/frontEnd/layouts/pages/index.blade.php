@@ -238,9 +238,13 @@
                     @endforeach
                 </div>
             </div>
+            @if($flas_sales->count() > 6)
             <div class="col-sm-12">
-               <a href="{{ route('flashsales') }}" class="view_more_btn" style="float:left">View More</a> 
+                <div class="show_more_btn">
+                    <a href="{{ route('flashsales') }}" class="view_more_btn">View More</a> 
+                </div>
             </div>
+            @endif
         </div>
     </div>
 </section>
@@ -336,9 +340,13 @@
                     @endforeach
                 </div>
             </div>
+            @if($hotdeal_top->count() > 6)
             <div class="col-sm-12">
-               <a href="{{ route('hotdeals') }}" class="view_more_btn" style="float:left">View More</a> 
+                <div class="show_more_btn">
+                    <a href="{{ route('hotdeals') }}" class="view_more_btn">View More</a> 
+                </div>
             </div>
+            @endif
         </div>
     </div>
 </section>
@@ -433,9 +441,13 @@
                     @endforeach
                 </div>
             </div>
+            @if($all_products->count() > 6)
             <div class="col-sm-12">
-               <a href="{{ route('shop') }}" class="view_more_btn" style="float:left">View More</a> 
+                <div class="show_more_btn">
+                    <a href="{{ route('shop') }}" class="view_more_btn">View More</a> 
+                </div>
             </div>
+            @endif
         </div>
     </div>
 </section>
@@ -545,11 +557,13 @@
                             @endforeach
                         </div>
                     </div>
+                    @if($homecat->products->count() > 6)
                     <div class="col-sm-12">
                         <div class="show_more_btn">
                             <a href="{{ route('category', $homecat->slug) }}" class="view_more_btn">View More</a>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </section>
