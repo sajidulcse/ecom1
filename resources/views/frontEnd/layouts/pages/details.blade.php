@@ -254,13 +254,13 @@
 
                                                     <input type="hidden" name="variant_price" id="variant_price" value="{{ $details->new_price }}">
 
-
-
+                                                            @if($details->brand)
                                                             <div class="pro_brand">
                                                                 <p>Brand :
-                                                                    {{ $details->brand ? $details->brand->name : 'N/A' }}
+                                                                    {{ $details->brand->name }}
                                                                 </p>
                                                             </div>
+                                                            @endif
                                                             
                                                             @if($details->stock < 1)
                                                             <p class="text-danger text-center border border-danger p-2">স্টক আউট</p>

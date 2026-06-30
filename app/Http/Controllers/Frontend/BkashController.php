@@ -91,7 +91,7 @@ class BkashController extends Controller
         $body_data = array(
             'mode' => '0011',
             'payerReference' => ' ',
-            'callbackURL' => 'https://ecom.websolutionit.com/bkash/checkout-url/callback?orderId='.$orderId,
+            'callbackURL' => route('url-callback', ['orderId' => $orderId]),
             'amount' => $amount,
             'currency' => 'BDT',
             'intent' => 'sale',
