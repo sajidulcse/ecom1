@@ -22,7 +22,7 @@
                         <div class="card text-left">
                             <div class="card-body">
                                 <div class="mb-4 text-center">
-                                    <img src="{{asset($generalsetting->dark_logo)}}" class="mw-100 mb-4" height="40">
+                                    <img src="{{asset($generalsetting->white_logo)}}" class="mw-100 mb-4" height="40">
                                     <h1 class="h3 text-primary mb-0">Set New Password</h1>
                                     <p>Choose a strong password for your account.</p>
                                 </div>

@@ -26,7 +26,7 @@
                         <div class="card text-left">
                             <div class="card-body">
                                 <div class="mb-4 text-center">
-                                    <img src="{{asset($generalsetting->dark_logo)}}" class="mw-100 mb-4" height="40">
+                                    <img src="{{asset($generalsetting->white_logo)}}" class="mw-100 mb-4" height="40">
                                     <h1 class="h3 text-primary mb-0">Enter OTP</h1>
                                     <p>A 6-digit OTP was sent to<br><strong>{{ $email }}</strong></p>
                                     <p class="mb-0">Expires in: <span id="countdown">01:00</span></p>
