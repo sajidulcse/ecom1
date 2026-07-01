@@ -299,7 +299,7 @@
                                                                         </a>
                                                                 </div>
                                                                 <div class="shadow mt-2">
-                                                                    <a href="https://wa.me/{{str_replace(['+', ' ', '-'], '', $contact->whatsapp)}}?text={{ urlencode('Hello, I am interested in your product: ' . $details->name . '. Here is the link: ' . url('/products/' . $details->slug)) }}" 
+                                                                    <a href="https://wa.me/{{str_replace(['+', ' ', '-'], '', $contact->whatsapp)}}?text={{ urlencode('Hello, I am interested in your product: ' . $details->name . '. Here is the link: ' . url('/product/' . $details->slug)) }}" 
                                                                     class="btn btn-success  d-block   text-light fw-bolder">
                                                                         Whatsapp <i class="fa-brands fa-whatsapp"></i> {{$contact->whatsapp}} 
                                                                         </a>
